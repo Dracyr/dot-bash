@@ -28,7 +28,7 @@ email = dracyr@gmail.com
 
 [core]
   editor = atom --wait
-  excludesfile = /Users/buren/.gitignore_global
+  excludesfile = /Users/pvsh/.gitignore_global
 
 [format]
   pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset

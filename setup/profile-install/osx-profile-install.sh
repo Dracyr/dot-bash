@@ -5,7 +5,7 @@
 
 __setup_osx_defaults() {
   echo "Setting up defaults"
-  cd $HOME/.buren/dot-bash && sudo ./.osx
+  cd $HOME/.pvsh/dot-bash && sudo ./.osx
   echo "Setup of OSX defaults DONE"
 }
 

@@ -85,12 +85,12 @@ function gfu() {
 }
 
 git-draw() {
-  if [[ ! -d ~/.buren/bin/git-draw ]]; then
+  if [[ ! -d ~/.pvsh/bin/git-draw ]]; then
     echo 'git-draw not found.'
     __dot-bash-install-git-draw
   fi
   open_with=${1:-open}
-  ~/.buren/bin/git-draw/git-draw-watch ~/.buren/bin/git-draw/git-draw \
+  ~/.pvsh/bin/git-draw/git-draw-watch ~/.pvsh/bin/git-draw/git-draw \
   --hide-reflogs \
   --hide-legend \
   --hide-blobcontent \

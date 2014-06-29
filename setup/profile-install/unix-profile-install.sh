@@ -9,8 +9,8 @@ __dot-bash-install-ngrok() {
   echo "Downloading Ngrok"
 
   current_folder=$(pwd)
-  mkdir ~/.buren/dot-bash-temp
-  cd ~/.buren/dot-bash-temp
+  mkdir ~/.pvsh/dot-bash-temp
+  cd ~/.pvsh/dot-bash-temp
 
   if [ "$(uname)" == "Darwin" ]; then
     echo "Downloading ngrok for OSX"
@@ -31,19 +31,19 @@ __dot-bash-install-ngrok() {
   unzip ngrok.zip
   rm ngrok.zip
 
-  [[ ! -d ~/.buren/bin ]] && mkdir -p ~/.buren/bin
-  mv ngrok ~/.buren/bin/
-  echo "Ngrok downloaded and installed in ~/.buren/bin"
+  [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin
+  mv ngrok ~/.pvsh/bin/
+  echo "Ngrok downloaded and installed in ~/.pvsh/bin"
   cd $current_folder
 }
 
 __dot-bash-install-betty() {
   echo "Downloading betty"
   current_folder=$(pwd)
-  mkdir ~/.buren/bin
-  cd ~/.buren/bin \
+  mkdir ~/.pvsh/bin
+  cd ~/.pvsh/bin \
   && git clone --depth=1 https://github.com/pickhardt/betty \
-  && echo 'Installed betty in ~/.buren/bin' \
+  && echo 'Installed betty in ~/.pvsh/bin' \
   || echo 'Something went wrong installing betty, check the output.'
   cd $current_folder
 }
@@ -51,7 +51,7 @@ __dot-bash-install-betty() {
 __dot-bash-util-scripts-install() {
   echo "Downloading util scripts"
   current_folder=$(pwd)
-  cd ~/.buren && git clone --depth=1 https://github.com/buren/util_scripts.git
+  cd ~/.pvsh && git clone --depth=1 https://github.com/pvsh/util_scripts.git
   cd $current_folder
 }
 
@@ -67,8 +67,8 @@ __dot-bash-install-node-file-server() {
     sudo apt-get install nodejs npm node-semver
   fi
 
-  cd ~/.buren/bin/
-  git clone --depth=1 https://github.com/buren/simple-file-server
+  cd ~/.pvsh/bin/
+  git clone --depth=1 https://github.com/pvsh/simple-file-server
   npm install optimist
   npm install http
   npm install express
@@ -82,9 +82,9 @@ __dot-bash-install-node-file-server() {
 # Terminal colors
 __dot-bash-install-solarized-terminal-colors() {
   echo "Installing terminal colors"
-  mkdir ~/.buren/terminal-themes
+  mkdir ~/.pvsh/terminal-themes
   current_folder=$(pwd)
-  cd ~/.buren/terminal-themes && git clone --depth=1 https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+  cd ~/.pvsh/terminal-themes && git clone --depth=1 https://github.com/sigurdga/gnome-terminal-colors-solarized.git
   echo "Terminal colors installed"
   cd $current_folder
 }
@@ -99,11 +99,11 @@ __dot-bash-install-lein-clojure() {
 
 
 __dot-bash-install-translate-cli() {
-  [[ ! -d ~/.buren/bin ]] && mkdir -p ~/.buren/bin/
-  cd ~/.buren/bin/ && \
+  [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin/
+  cd ~/.pvsh/bin/ && \
   echo "Downloading google-translate-cli" && \
   git clone git://github.com/soimort/google-translate-cli.git && \
-  cd  ~/.buren/bin/google-translate-cli/ && \
+  cd  ~/.pvsh/bin/google-translate-cli/ && \
   echo "Installing google-translate-cli" && \
   make install
 }
@@ -111,10 +111,10 @@ __dot-bash-install-translate-cli() {
 __dot-bash-install-cast-localvideo() {
   current_folder=$(pwd)
   echo "Installing cast-localvideo"
-  [[ ! -d ~/.buren/bin ]] && mkdir -p ~/.buren/bin/
-  cd ~/.buren/bin/ \
+  [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin/
+  cd ~/.pvsh/bin/ \
   && git clone --depth=1 https://github.com/mustafaakin/cast-localvideo.git \
-  && cd ~/.buren/bin/cast-localvideo \
+  && cd ~/.pvsh/bin/cast-localvideo \
   && npm install
   echo "Installed cast-localvideo"
   cd $current_folder
@@ -123,8 +123,8 @@ __dot-bash-install-cast-localvideo() {
 __install-2048-sed() {
   current_folder=$(pwd)
   echo "Installing 2048-sed"
-  [[ ! -d ~/.buren/bin ]] && mkdir -p ~/.buren/bin
-  cd ~/.buren/bin/ \
+  [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin
+  cd ~/.pvsh/bin/ \
   && git clone --depth=1 https://github.com/themattrix/sed2048.git \
   || echo "Something went wrong"
   echo "Installed"
@@ -134,9 +134,9 @@ __install-2048-sed() {
 __dot-bash-install-git-draw() {
   current_folder=$(pwd)
   echo 'Installing git-draw'
-  [[ ! -d ~/.buren/bin ]] && mkdir -p ~/.buren/bin
-  cd ~/.buren/bin/ \
-  && git clone --depth=1 https://github.com/buren/git-draw.git \
+  [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin
+  cd ~/.pvsh/bin/ \
+  && git clone --depth=1 https://github.com/pvsh/git-draw.git \
   || echo "Something went wrong"
   echo "git-draw installed"
   cd $current_folder

@@ -36,22 +36,22 @@ redo_with() {
 alias rw='redo_with'
 
 betty() {
-  if [[ ! -d ~/.buren/bin/betty  ]]; then
+  if [[ ! -d ~/.pvsh/bin/betty  ]]; then
     echo 'Betty command not found..'
     __dot-bash-install-betty
   fi
-  ~/.buren/bin/betty/main.rb "$@"
+  ~/.pvsh/bin/betty/main.rb "$@"
 }
 
 alias starwars='traceroute 216.81.59.173'
 alias print_ascii='man ascii'
 
 2048-game() {
-  if [[ ! -d ~/.buren/bin/sed2048 ]]; then
+  if [[ ! -d ~/.pvsh/bin/sed2048 ]]; then
     echo -e "Could't not find 2048-sed.. Installing..."
     __install-2048-sed
   fi
-  bash ~/.buren/bin/sed2048/src/2048.sh
+  bash ~/.pvsh/bin/sed2048/src/2048.sh
 }
 
 # Set the terminal's title bar.
@@ -156,18 +156,18 @@ unset jscbin
 alias week='date +"%V"'
 
 terminal-dark() {
-  if [[ ! -d ~/.buren/terminal-themes/gnome-terminal-colors-solarized ]]; then
+  if [[ ! -d ~/.pvsh/terminal-themes/gnome-terminal-colors-solarized ]]; then
     echo "Terminal themes not installed"
     __dot-bash-install-solarized-terminal-colors
   fi
-  sh ~/.buren/terminal-themes/gnome-terminal-colors-solarized/set_dark.sh
+  sh ~/.pvsh/terminal-themes/gnome-terminal-colors-solarized/set_dark.sh
 }
 terminal-light() {
-  if [[ ! -d ~/.buren/terminal-themes/gnome-terminal-colors-solarized ]]; then
+  if [[ ! -d ~/.pvsh/terminal-themes/gnome-terminal-colors-solarized ]]; then
     echo "Terminal themes not installed"
     __dot-bash-install-solarized-terminal-colors
   fi
-  sh ~/.buren/terminal-themes/gnome-terminal-colors-solarized/set_light.sh
+  sh ~/.pvsh/terminal-themes/gnome-terminal-colors-solarized/set_light.sh
 }
 
 is_prime() {

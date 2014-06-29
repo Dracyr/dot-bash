@@ -39,7 +39,7 @@ export LESS_TERMCAP_md="$ORANGE"
 export MANPAGER="less -X"
 
 ## __DOT_BASH__ ##
-source ~/.buren/dot-bash/setup/profile-install/unix-profile-install.sh # Install functions
+source ~/.pvsh/dot-bash/setup/profile-install/unix-profile-install.sh # Install functions
 
 ## __UNIX__ ##
 alias resource="source ~/.bash_profile"
@@ -78,7 +78,7 @@ lein() {
 
 # Translate text with google-translate-cli
 translate() {
-  if [[ ! -d ~/.buren/bin/google-translate-cli ]];then
+  if [[ ! -d ~/.pvsh/bin/google-translate-cli ]];then
     echo "google-translate-cli not found.."
     echo "Init install script"
     sleep 1

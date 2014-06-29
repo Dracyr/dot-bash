@@ -45,8 +45,8 @@ alias whois="whois -h whois-servers.net"
 
 # Makes localhost accessible through a tunnel
 ngrok() {
-  if [ ! -f ~/.buren/bin/ngrok ];then
-    echo "Ngrok not found in ~/.buren/bin/ngrok."
+  if [ ! -f ~/.pvsh/bin/ngrok ];then
+    echo "Ngrok not found in ~/.pvsh/bin/ngrok."
     __dot-bash-install-ngrok
     echo "Installation finished."
   fi
@@ -60,7 +60,7 @@ ngrok() {
     echo "alias: servelocalhost"
   else
     echo "Starting ngrok"
-    ~/.buren/bin/ngrok "$@" # $1 port
+    ~/.pvsh/bin/ngrok "$@" # $1 port
   fi
 }
 alias servelocalhost='ngrok'
@@ -85,22 +85,22 @@ servethis() {
 }
 
 servethis-node() {
-  mkdir ~/.buren/bin/
+  mkdir ~/.pvsh/bin/
   if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
     echo "Usage:"
     echo -e "\t servethis-node <optional_directory>"
     echo "serve the current/specified directory"
   else
-    if [[ ! -d ~/.buren/bin/simple-file-server ]]; then
+    if [[ ! -d ~/.pvsh/bin/simple-file-server ]]; then
       echo "Simple file server not found, downloading..."
       __dot-bash-install-node-file-server
     fi
-    node ~/.buren/bin/simple-file-server/server.js --port 8000 --folder $1
+    node ~/.pvsh/bin/simple-file-server/server.js --port 8000 --folder $1
   fi
 }
 
 cast-local() {
-  if [[ ! -d ~/.buren/bin/cast-localvideo ]]; then
+  if [[ ! -d ~/.pvsh/bin/cast-localvideo ]]; then
     __dot-bash-install-cast-localvideo
   fi
   if [[ $1 == "-h" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
@@ -109,7 +109,7 @@ cast-local() {
     echo "Cast (almost) any local video format."
     echo "Will start a web server at localhost:8000"
   fi
-  cd ~/.buren/bin/cast-localvideo/ && node app.js
+  cd ~/.pvsh/bin/cast-localvideo/ && node app.js
 }
 alias cast-local-video='cast-local'
 
@@ -232,10 +232,10 @@ download() {
     echo "Optional options: --types=<first> <second> --selector=<html_selector>"
     echo "Example:"
     echo -e "\t download --url=example.com --types=pdf zip java --selector=.html-class"
-  elif [ -d ~/.buren/util_scripts/ ]; then
-    rvm use 2.0.0 && ~/.buren/util_scripts/downloader.thor fetch "$@"
+  elif [ -d ~/.pvsh/util_scripts/ ]; then
+    rvm use 2.0.0 && ~/.pvsh/util_scripts/downloader.thor fetch "$@"
   else
-    echo "Cannot find ~/.buren/util_scripts/downloader.thor"
+    echo "Cannot find ~/.pvsh/util_scripts/downloader.thor"
     __dot-bash-util-scripts-install
   fi
 }

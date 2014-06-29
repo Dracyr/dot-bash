@@ -1,14 +1,14 @@
 #!/bin/bash
 
-buren() {
+pvsh() {
   if  [[ -z "$1" ]]; then
-    __buren-help
+    __pvsh-help
   else
-    __buren_functions "$@"
+    __pvsh_functions "$@"
   fi
 }
 
-__buren_functions() {
+__pvsh_functions() {
   if   [[ "$1" == "self-destruct" ]]; then
     __b_self_destruct
   elif [[ "$1" == "update" ]]; then
@@ -32,7 +32,7 @@ __buren_functions() {
     fi
   else
     echo "Unknown command '$1'"
-    __buren-help
+    __pvsh-help
   fi
 }
 
@@ -40,7 +40,7 @@ __buren_functions() {
 ###############
 #        FUNCTIONS        #
 ###############
-__buren-stat-help() {
+__pvsh-stat-help() {
   echo "available:"
   echo -e "'\t commands 2             prints 2 most popular commands (default: 12)"
 }
@@ -50,7 +50,7 @@ __b_stat() {
     __b_popular_commands $2
   else
     echo "Unknown command '$1'"
-    __buren-stat-help
+    __pvsh-stat-help
   fi
 }
 
@@ -59,18 +59,18 @@ __b_popular_commands() {
 }
 
 __b_list_functions() {
-  grep -rh '()' ~/.buren/dot-bash
+  grep -rh '()' ~/.pvsh/dot-bash
 }
 
 __b_list_aliases() {
-  grep -rh 'alias ' ~/.buren/dot-bash
+  grep -rh 'alias ' ~/.pvsh/dot-bash
 }
 
 __b_self_destruct() {
   if [[ "$1" == "--help" || "$1" == "-help " ]]; then
     echo "usage:"
-    echo -e "\t buren self-destruct"
-    echo "removes the script entirely (rm -rf ~/.buren)"
+    echo -e "\t pvsh self-destruct"
+    echo "removes the script entirely (rm -rf ~/.pvsh)"
   else
     while true; do
       read -p "Are you sure? (y\n)" yn
@@ -84,13 +84,13 @@ __b_self_destruct() {
 }
 
 __b_self_destruct_execute() {
-  rm -rf ~/.buren
+  rm -rf ~/.pvsh
 }
 
 __b_update() {
   if   [[ "$1" == "--help" || "$1" == "-help" ]]; then
     echo "usage:"
-    echo -e "\t buren update <pkg>"
+    echo -e "\t pvsh update <pkg>"
     echo "no argument will update all packages"
     echo "available packages: git-story, dot-bash, util-scripts"
   else
@@ -113,7 +113,7 @@ __b_update() {
 
 __b_update_dot_bash() {
   echo "Updating dot-bash"
-  cd ~/.buren/dot-bash && git pull origin master
+  cd ~/.pvsh/dot-bash && git pull origin master
 }
 
 __b_update_git_story() {
@@ -123,26 +123,26 @@ __b_update_git_story() {
 
 __b_update_util_scripts() {
     echo "Updating util_scripts"
-    cd ~/.buren/util_scripts && git pull origin master
+    cd ~/.pvsh/util_scripts && git pull origin master
 }
 
 __b_edit() {
   if [[ "$1" == "--help" || "$1" == "-help" ]]; then
     echo "Usage:"
-    echo -e "\t buren edit <package>"
+    echo -e "\t pvsh edit <package>"
     echo "Available packages:"
     echo -e "\t dot-bash (alias: bash), git-story (alias: git), util_scripts (alias: scripts)"
     echo "Default:  dot-bash"
   else
     if  [[ -z "$1" ]]; then
-      $($B_EDITOR ~/.buren/dot-bash)
+      $($B_EDITOR ~/.pvsh/dot-bash)
     else
       if [[ "$1" == "dot-bash" ]] || [ "$1" == "bash" ]; then
-        $($B_EDITOR ~/.buren/dot-bash/)
+        $($B_EDITOR ~/.pvsh/dot-bash/)
       elif [[ $1 == "git-story" ]] || [[ $1 == "git" ]]; then
         $($B_EDITOR ~/.git-story/)
       elif [[ $1 == "util_scripts" ]] || [[ $1 == "scripts" ]]; then
-        $($B_EDITOR ~/.buren/util_scripts/)
+        $($B_EDITOR ~/.pvsh/util_scripts/)
       else
         echo "Unkown package: $1"
         echo "Available packages:"
@@ -157,7 +157,7 @@ __b_extend() {
     echo -e "extend doesn't take any arguments."
     echo "Ignoring all arguments"
   fi
-  cd ~/.buren/dot-bash/
+  cd ~/.pvsh/dot-bash/
     __b_edit "dot-bash"
 }
 
@@ -165,7 +165,7 @@ __b_extend() {
 __b_setup() {
   if [[ "$1" == "--help" || "$1" == "-help" ]]; then
     echo "usage:"
-    echo -e "\t buren setup <arg>"
+    echo -e "\t pvsh setup <arg>"
     echo "available args: os, defaults"
     echo ""
     echo "Command explaination:"
@@ -183,9 +183,9 @@ __b_setup() {
 
 __b_setup_os() {
   if [[ "$(uname)" == "Darwin" ]]; then
-    sh ~/.buren/setup/os-install/install-osx.sh
+    sh ~/.pvsh/setup/os-install/install-osx.sh
   elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
-    sh ~/.buren/setup/os-install/install-linux.sh
+    sh ~/.pvsh/setup/os-install/install-linux.sh
   fi
 }
 
@@ -203,10 +203,10 @@ __b_setup_defaults() {
 #             HELP            #
 ###############
 
-__buren-help() {
+__pvsh-help() {
   echo "usage: "
-  echo -e "\t buren update <pkg>"
-  echo -e "\t buren self-destruct"
+  echo -e "\t pvsh update <pkg>"
+  echo -e "\t pvsh self-destruct"
   echo "help:"
-  echo -e "\t buren <command> -help"
+  echo -e "\t pvsh <command> -help"
 }
