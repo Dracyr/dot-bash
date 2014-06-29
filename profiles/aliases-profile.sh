@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ## __LTH__ ##
 alias lthssh="ssh dat12pp1@login.student.lth.se"
 alias lthmount="gvfs-mount sftp://dat12pp1@login.student.lth.se"

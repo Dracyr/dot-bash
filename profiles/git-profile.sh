@@ -65,7 +65,7 @@ function ged() {
   local n=${#files[@]}
   echo "Opening $n $([[ "$@" ]] || echo "modified ")file$([[ $n != 1 ]] && \
     echo s)${@:+ modified in }$@"
-  atom "${files[@]}"
+  subl "${files[@]}"
 }
 
 
