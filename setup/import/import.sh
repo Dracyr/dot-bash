@@ -11,10 +11,6 @@ source ~/.pvsh/dot-bash/profiles/terminal-profile.sh
 source ~/.pvsh/dot-bash/profiles/ssh-profile.sh
 source ~/.pvsh/dot-bash/utils/cli.sh
 
-if [[ $SHELL != "/bin/zsh" ]]; then
-  source ~/.pvsh/dot-bash/profiles/bash-prompt.sh
-fi
-
 # Add all files in bin/ to PATH
 PATH=$PATH:$HOME/.pvsh/dot-bash/bin/
 export PATH
