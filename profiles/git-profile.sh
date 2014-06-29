@@ -23,7 +23,9 @@ alias gbranch='git branch'
 alias gfindreg='git rev-list --all | xargs git grep'  # Find in history regex
 alias gfind='git rev-list --all | xargs git grep -F'  # Find in history string search
 
-gcommit() {
+
+alias grhh="git reset --hard HEAD"
+gac() {
   git add --all
   git commit -m "$1"
 }
@@ -82,17 +84,4 @@ function gfu() {
   local n="${@:-1}"
   n=$((n-1))
   open $(git log -n 1 --skip=$n --pretty=oneline | awk "{printf \"$(gurl)/commit/%s\", substr(\$1,1,7)}")
-}
-
-git-draw() {
-  if [[ ! -d ~/.pvsh/bin/git-draw ]]; then
-    echo 'git-draw not found.'
-    __dot-bash-install-git-draw
-  fi
-  open_with=${1:-open}
-  ~/.pvsh/bin/git-draw/git-draw-watch ~/.pvsh/bin/git-draw/git-draw \
-  --hide-reflogs \
-  --hide-legend \
-  --hide-blobcontent \
-  --display-cmd $open_with
 }

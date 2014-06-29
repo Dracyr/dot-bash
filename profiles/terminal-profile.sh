@@ -3,9 +3,13 @@
 alias list_functions='compgen -A function'
 alias list_aliases='compgen -a'
 
-common_commands() {
-  history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
-}
+# Stopwatch
+alias stopwatch='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+alias week='date +"%V"'
+alias starwars='traceroute 216.81.59.173'
+alias print_ascii='man ascii'
+
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -17,6 +21,10 @@ please() {
   else
     sudo "$@"
   fi
+}
+
+common_commands() {
+  history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
 }
 
 redo_with() {
@@ -34,25 +42,6 @@ redo_with() {
   fi
 }
 alias rw='redo_with'
-
-betty() {
-  if [[ ! -d ~/.pvsh/bin/betty  ]]; then
-    echo 'Betty command not found..'
-    __dot-bash-install-betty
-  fi
-  ~/.pvsh/bin/betty/main.rb "$@"
-}
-
-alias starwars='traceroute 216.81.59.173'
-alias print_ascii='man ascii'
-
-2048-game() {
-  if [[ ! -d ~/.pvsh/bin/sed2048 ]]; then
-    echo -e "Could't not find 2048-sed.. Installing..."
-    __install-2048-sed
-  fi
-  bash ~/.pvsh/bin/sed2048/src/2048.sh
-}
 
 # Set the terminal's title bar.
 function titlebar() {
@@ -144,16 +133,6 @@ if [[ ${#nops[@]} > 0 ]]; then
 fi
 
 } # END eachdir()
-
-# Stopwatch
-alias stopwatch='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
-
-# JavaScriptCore REPL
-jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
-[ -e "${jscbin}" ] && alias jrb="${jscbin}"
-unset jscbin
-
-alias week='date +"%V"'
 
 terminal-dark() {
   if [[ ! -d ~/.pvsh/terminal-themes/gnome-terminal-colors-solarized ]]; then

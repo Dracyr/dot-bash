@@ -1,5 +1,19 @@
 #!/bin/bash
 
+alias ls='ls --color=auto'
+alias la='ls -a --color=auto'
+alias ll="ls -l --color=auto"
+alias mv='mv -i' # prompt if duplicate filename
+alias grep='grep --color=auto'
+
+alias hs='history | grep --color=auto'
+alias o='open'
+alias c='clear'
+# Colored and paginated directory tree
+alias treep='tree -C "$@" | less -R'
+# Search running processes
+alias tm='ps -ef | grep --color=auto'
+
 alias rsync='rsync --progress'
 
 count_size() {
@@ -7,11 +21,7 @@ count_size() {
 }
 
 ls_file_permissions() {
-  if [ "$(uname)" == "Darwin" ]; then
-    stat -f '%A %a %N' *
-  else
-    stat -c '%A %a %N' *
-  fi
+  stat -c '%A %a %N' *
 }
 alias file_permissions="ls_file_permissions"
 

@@ -2,6 +2,24 @@
 
 ## __NETWORKING__ ##
 
+# Quick look online hosts
+alias whoisup='fping -c1 -gds 192.168.1.0/24 2>&1| egrep -v "ICMP|xmt"'
+# Get local IP
+alias localip="hostname -I"
+# Enhanced WHOIS lookups
+alias whois="whois -h whois-servers.net"
+
+# Show active network listeners
+alias netlisteners='netstat -untap'
+alias checkconnection="ping www.google.com"
+
+# Get external IP
+alias myip='curl ip.appspot.com'
+alias externalip='myip'
+
+# Logs all GET and POST requests on port 80
+alias sniff="sudo ngrep -d 'wlan0' -t '^(GET|POST) ' 'tcp and port 80'"
+
 headers() {
   curl -sv "$@" 2>&1 >/dev/null |
     grep -v "^\*" |
@@ -40,206 +58,6 @@ urlencode() {
   fi
 }
 
-# Enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net"
-
-# Makes localhost accessible through a tunnel
-ngrok() {
-  if [ ! -f ~/.pvsh/bin/ngrok ];then
-    echo "Ngrok not found in ~/.pvsh/bin/ngrok."
-    __dot-bash-install-ngrok
-    echo "Installation finished."
-  fi
-
-  if [[ -z "$1" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t ngrok <port>"
-    echo "or if ~/.ngrok config is set up"
-    echo -e "\t ngrok start <service>"
-    echo "serve localhost on port"
-    echo "alias: servelocalhost"
-  else
-    echo "Starting ngrok"
-    ~/.pvsh/bin/ngrok "$@" # $1 port
-  fi
-}
-alias servelocalhost='ngrok'
-
-# Simple HTTPS server, serving current directory
-servethis() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t servethis <optional_directory>"
-    echo "serve the current/specified directory"
-  else
-    if [ ! -z "$1" ]; then
-      cd $1
-    fi
-    ret=`python -c 'import sys; print("%i" % (sys.hexversion<0x03000000))'`
-    if [ $ret -eq 0 ]; then    # Python version is >= 3
-      python -c 'python -m http.server 8765'
-    else                       # Python version is < 3
-      python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'
-    fi
-  fi
-}
-
-servethis-node() {
-  mkdir ~/.pvsh/bin/
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t servethis-node <optional_directory>"
-    echo "serve the current/specified directory"
-  else
-    if [[ ! -d ~/.pvsh/bin/simple-file-server ]]; then
-      echo "Simple file server not found, downloading..."
-      __dot-bash-install-node-file-server
-    fi
-    node ~/.pvsh/bin/simple-file-server/server.js --port 8000 --folder $1
-  fi
-}
-
-cast-local() {
-  if [[ ! -d ~/.pvsh/bin/cast-localvideo ]]; then
-    __dot-bash-install-cast-localvideo
-  fi
-  if [[ $1 == "-h" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "usage:"
-    echo -e "\t cast-local"
-    echo "Cast (almost) any local video format."
-    echo "Will start a web server at localhost:8000"
-  fi
-  cd ~/.pvsh/bin/cast-localvideo/ && node app.js
-}
-alias cast-local-video='cast-local'
-
-speedtest() {
-  wget http://cachefly.cachefly.net/100mb.test
-  rm 100mb.test
-}
-
-# Simple chat server
-chat_client() {
-  if [[ -z "$1" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t chat_server <optional_port>"
-    echo "connects to chat server on <ip> <optional_port>"
-    echo "Default port: 55555"
-  else
-    echo "Initalizing chat client"
-    echo "Listening on $1 port ${2-55555}"
-    nc $1 ${2-55555}
-  fi
-}
-
-chat_server() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t chat_server <optional_port>"
-    echo "starts chat server on port <optional_port>"
-    echo "Default port: 55555"
-  else
-    echo "Initalizing chat server"
-    echo "On the other computer type:"
-    echo nc $(localip) ${1-55555}
-    nc -l ${1-55555}
-  fi
-}
-
-trace() {
-  if [ "$(uname)" == "Darwin" ]; then
-    if [[ ! -d '/usr/local/Cellar/mtr' ]]; then
-      echo "mtr not found installing"
-      __install-osx-mtr
-    fi
-  fi
-  mtr $@
-}
-alias mtr='trace'
-
-
-# Show active network listeners
-alias netlisteners='netstat -untap'
-alias checkconnection="ping www.google.com"
-
-# Get external IP
-alias myip='curl ip.appspot.com'
-alias externalip='myip'
-
-
-scan_network() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t scan_network <optional_scan_range>"
-    echo "scans network for online hosts"
-    echo "Default range: $B_NETWORK_RANGE"
-  else
-    if [[ -z "$1" ]]; then
-      sudo nmap -sV -vv -PN $B_NETWORK_RANGE
-    else
-      sudo nmap -sV -vv -PN $1
-    fi
-  fi
-}
-
-scan_secret() {
-  if [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t scan_secret <optional_scan_range>"
-    echo "scans network for online hosts and open ports. (verbose)"
-    echo "Default range: $B_NETWORK_RANGE"
-  else
-    if [[ -z "$1" ]]; then
-      sudo nmap -sn -PE $B_NETWORK_RANGE
-    else
-      sudo nmap -sn -PE $1
-    fi
-  fi
-}
-
-alias scan_network_deep='sudo nmap -sC --script=smb-check-vulns --script-args=safe=1 --script-args=unsafe=1 -p445  -d -PN -n -T4  --min-hostgroup 256 --min-parallelism 64  -oA conficker_scan -O --osscan-guess $B_NETWORK_RANGE'
-
-alias scan_ssh='nmap -p 22 --open -sV $B_NETWORK_RANGE'
-
-scan_firewall() {
-  ## TCP Null Scan to fool a firewall to generate a response ##
-  ## Does not set any bits (TCP flag header is 0) ##
-  sudo nmap -sN $1;
-  ## TCP Fin scan to check firewall ##
-  ## Sets just the TCP FIN bit ##
-  sudo nmap -sF $1;
-  ## TCP Xmas scan to check firewall ##
-  ## Sets the FIN, PSH, and URG flags, lighting the packet up like a Christmas tree ##
-  sudo nmap -sX $1;
-}
-# Scans what ports are open on given ip-address
-scan_openports() {
-  sudo nmap -sS $1
-}
-# Checks the operating system and other data for give ip-address
-scan_os() {
-  sudo nmap -O --osscan-guess $1
-}
-# Logs all GET and POST requests on port 80
-alias sniff="sudo ngrep -d 'wlan0' -t '^(GET|POST) ' 'tcp and port 80'"
-
-
-download() {
-  if [[ -z "$1" ]] || [[ $1 == "-help" ]] || [[ $1 == "--help" ]]; then
-    echo "Usage:"
-    echo -e "\t download --url=<url> --types=<first> <second> --selector=<html_selector>"
-    echo "Required options: --url"
-    echo "Optional options: --types=<first> <second> --selector=<html_selector>"
-    echo "Example:"
-    echo -e "\t download --url=example.com --types=pdf zip java --selector=.html-class"
-  elif [ -d ~/.pvsh/util_scripts/ ]; then
-    rvm use 2.0.0 && ~/.pvsh/util_scripts/downloader.thor fetch "$@"
-  else
-    echo "Cannot find ~/.pvsh/util_scripts/downloader.thor"
-    __dot-bash-util-scripts-install
-  fi
-}
-
 # Shorten given URL
 shortenurl() {
   curl -s http://is.gd/api.php?longurl=`perl -MURI::Escape -e "print uri_escape('$1');"`
@@ -249,12 +67,4 @@ shortenurl() {
 # Display URL true destination
 expandurl() {
   curl -sIL $1 | grep ^Location
-}
-
-function phpserver() {
-  local port="${1:-4000}"
-  # local ip=$(ipconfig getifaddr en1)
-  local ip='192.168.0.103'
-  sleep 1 && open "http://${ip}:${port}/" &
-  php -S "${ip}:${port}"
 }

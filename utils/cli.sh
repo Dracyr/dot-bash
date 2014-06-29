@@ -15,10 +15,6 @@ __pvsh_functions() {
     __b_update "$2"
   elif [[ "$1" == "setup" ]]; then
     __b_setup "$2"
-  elif [[ "$1" == "edit" ]]; then
-    __b_edit "$2"
-  elif [[ "$1" == "extend" ]]; then
-    __b_extend
   elif [[ "$1" == "stat" ]]; then
     __b_stat "$2" "$3"
   elif [[ "$1" == "list" ]];then
@@ -90,114 +86,18 @@ __b_self_destruct_execute() {
 __b_update() {
   if   [[ "$1" == "--help" || "$1" == "-help" ]]; then
     echo "usage:"
-    echo -e "\t pvsh update <pkg>"
-    echo "no argument will update all packages"
-    echo "available packages: git-story, dot-bash, util-scripts"
+    echo -e "\t pvsh update"
+    echo "Will update dot-bash"
   else
-    local CURRENT_FOLDER=$(pwd)
-    if [ "$1" == "git-story" ]; then
-      __b_update_git_story
-    elif [ "$1" == "util-scripts" ]; then
-      __b_update_util_scripts
-    elif [ "$1" == "dot-bash" ];then
-      __b_update_dot_bash
-    elif [ -z "$1" ]; then
-      __b_update_dot_bash
-      __b_update_util_scripts
-      __b_update_git_story
-    fi
-    source ~/.bash_profile
+    echo "Updating dot-bash"
+    cd ~/.pvsh/dot-bash && git pull origin master
     cd $CURRENT_FOLDER
   fi
 }
 
-__b_update_dot_bash() {
-  echo "Updating dot-bash"
-  cd ~/.pvsh/dot-bash && git pull origin master
-}
-
-__b_update_git_story() {
-  echo "Updating git-story"
-  cd ~/.git-story && git pull origin master
-}
-
-__b_update_util_scripts() {
-    echo "Updating util_scripts"
-    cd ~/.pvsh/util_scripts && git pull origin master
-}
-
-__b_edit() {
-  if [[ "$1" == "--help" || "$1" == "-help" ]]; then
-    echo "Usage:"
-    echo -e "\t pvsh edit <package>"
-    echo "Available packages:"
-    echo -e "\t dot-bash (alias: bash), git-story (alias: git), util_scripts (alias: scripts)"
-    echo "Default:  dot-bash"
-  else
-    if  [[ -z "$1" ]]; then
-      $($B_EDITOR ~/.pvsh/dot-bash)
-    else
-      if [[ "$1" == "dot-bash" ]] || [ "$1" == "bash" ]; then
-        $($B_EDITOR ~/.pvsh/dot-bash/)
-      elif [[ $1 == "git-story" ]] || [[ $1 == "git" ]]; then
-        $($B_EDITOR ~/.git-story/)
-      elif [[ $1 == "util_scripts" ]] || [[ $1 == "scripts" ]]; then
-        $($B_EDITOR ~/.pvsh/util_scripts/)
-      else
-        echo "Unkown package: $1"
-        echo "Available packages:"
-        echo -e "\t dot-bash (alias: bash), git-story (alias: git), util_scripts (alias: scripts)"
-      fi
-    fi
-  fi
-}
-
-__b_extend() {
-  if [[ ! -z $1 ]];then
-    echo -e "extend doesn't take any arguments."
-    echo "Ignoring all arguments"
-  fi
-  cd ~/.pvsh/dot-bash/
-    __b_edit "dot-bash"
-}
-
-
 __b_setup() {
-  if [[ "$1" == "--help" || "$1" == "-help" ]]; then
-    echo "usage:"
-    echo -e "\t pvsh setup <arg>"
-    echo "available args: os, defaults"
-    echo ""
-    echo "Command explaination:"
-    echo -e "\t os            Installs packages for current platform"
-    echo -e "\t defaults      Sets default values (startup options etc) for current platform"
-  elif [ "$1" == "os" ]; then
-    __b_setup_os
-  elif [[ $1 == "defaults" ]]; then
-    __b_setup_defaults
-  else
-    echo "Unknown option '$1'"
-    __b_setup --help
-  fi
+  sh ~/.pvsh/setup/install.sh
 }
-
-__b_setup_os() {
-  if [[ "$(uname)" == "Darwin" ]]; then
-    sh ~/.pvsh/setup/os-install/install-osx.sh
-  elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
-    sh ~/.pvsh/setup/os-install/install-linux.sh
-  fi
-}
-
-__b_setup_defaults() {
-  if [[ "$(uname)" == "Darwin" ]]; then
-    echo "Setting up defaults for OSX"
-    __setup_osx_defaults
-  elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
-    echo "No defaults configured for Linux"
-  fi
-}
-
 
 ###############
 #             HELP            #
