@@ -1,10 +1,8 @@
 ## Dot files.
 
 ### Install
-    curl -L http://bit.ly/1gnfItC | bash
-or if [bit.ly](https://bitly.com/) is down `curl https://raw.github.com/pvsh/dot-bash/master/setup.sh | bash`
-
+	curl https://raw.github.com/pvsh/dot-bash/master/setup.sh | bash
 
 #### Notes
 
-  Some of the aliases are Ubuntu specific, others use `apt-get `.
+  Forked from https://github.com/buren/dot-bash

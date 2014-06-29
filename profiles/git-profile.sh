@@ -5,26 +5,12 @@ git config --global help.autocorrect 20 # Auto correct misspellings, after a 2 s
 git config --global color.ui auto       # Use colors by default
 git config --global merge.stat true     # Always show merge stats
 
-alias gut='git'
-alias gdiff='git diff'
-alias gdiffstaged='git diff --staged'
-alias gitmerged='git branch --merged'
-alias gmerged='gitmerged'
-alias gunmerged='git branch --no-merged'
-alias gitnomerged='gunmerged'
-alias gnomerged='gunmerged'
-alias gshow='git show '
-alias gprettylog='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-alias glog='gprettylog'
-alias gadd='git add .'
-alias gcheck='git checkout'
-alias gbranch='git branch'
 # Finds
 alias gfindreg='git rev-list --all | xargs git grep'  # Find in history regex
 alias gfind='git rev-list --all | xargs git grep -F'  # Find in history string search
 
-
-alias grhh="git reset --hard HEAD"
+alias gs ='git status'
+alias grhh='git reset --hard HEAD'
 gac() {
   git add --all
   git commit -m "$1"
@@ -42,10 +28,6 @@ gpush() {
     git commit -m "$2"
     git push origin $1
   fi
-}
-
-gitfuckit() {
-  gpush ${1-master} ${2-update}
 }
 
 # TODO: cd to the cloned directory

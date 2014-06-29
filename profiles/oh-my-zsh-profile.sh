@@ -4,7 +4,14 @@
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="agnoster"
-DEFAULT_USER="per-victor"
+
+#Don't try to start sublime when in ssh
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  alias zshconfig="vim ~/.zshrc"
+else
+  alias zshconfig="subl ~/.zshrc"
+  DEFAULT_USER=$(whoami)
+fi
 
 # completion
 autoload -U compinit
