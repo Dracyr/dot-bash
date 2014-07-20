@@ -31,6 +31,6 @@ __dot-bash-inject-to-profile() {
 mkdir ~/.pvsh
 CURRENT_FOLDER=$(pwd) && \
 cd ~/.pvsh && \
-git clone https://github.com/pvsh/dot-bash.git && \
+git clone https://github.com/Dracyr/dot-bash.git && \
 __dot-bash-inject-to-profile && \
 cd $CURRENT_FOLDER
