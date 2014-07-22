@@ -15,13 +15,13 @@ alias print_ascii='man ascii'
 alias sudo='sudo '
 
 # Do sudo a command, or do sudo to the last typed command if no argument given
-please() {
-  if [[ $# == 0 ]]; then
-    sudo $(history -p '!!')
-  else
-    sudo "$@"
-  fi
-}
+#please() {
+#  if [[ $# == 0 ]]; then
+#    sudo $(history -p '!!')
+#  else
+#    sudo "$@"
+#  fi
+#}
 
 common_commands() {
   history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
