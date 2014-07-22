@@ -9,8 +9,9 @@ git config --global merge.stat true     # Always show merge stats
 alias gfindreg='git rev-list --all | xargs git grep'  # Find in history regex
 alias gfind='git rev-list --all | xargs git grep -F'  # Find in history string search
 
-alias gs ='git status'
+alias gs='git status'
 alias grhh='git reset --hard HEAD'
+
 gac() {
   git add --all
   git commit -m "$1"
@@ -50,15 +51,15 @@ function ged() {
   subl "${files[@]}"
 }
 
-
+# !!! Broken !!!
 # GitHub URL for current repo.
-function gurl() {
-  local remotename="${@:-origin}"
-  local remote="$(git remote -v | awk '/^'"$remotename"'.*\(push\)$/ {print $2}')"
-  [[ "$remote" ]] || return
-  local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
-  echo "https://github.com/$user_repo"
-}
+#function gurl() {
+#  local remotename="${@:-origin}"
+#  local remote="$(git remote -v | awk '/^'"$remotename"'.*\(push\)$/ {print $2}')"
+#  [[ '$remote']] || return
+#  local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
+#  echo "https://github.com/$user_repo"
+#}
 
 
 # open last commit in GitHub, in the browser.
