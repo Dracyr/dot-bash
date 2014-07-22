@@ -56,7 +56,7 @@ function ged() {
 #function gurl() {
 #  local remotename="${@:-origin}"
 #  local remote="$(git remote -v | awk '/^'"$remotename"'.*\(push\)$/ {print $2}')"
-#  [[ '$remote']] || return
+#  [[ '$remote']] || return #ZSH dislikes this
 #  local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
 #  echo "https://github.com/$user_repo"
 #}
