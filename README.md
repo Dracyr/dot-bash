@@ -1,7 +1,7 @@
 ## Dot files.
 
 ### Install
-	curl https://raw.github.com/pvsh/dot-bash/master/setup.sh | bash
+	curl https://raw.github.com/Dracyr/dot-bash/master/setup.sh | bash
 
 #### Notes
 
