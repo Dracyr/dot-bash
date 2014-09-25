@@ -1,7 +1,7 @@
 ## Dot files.
 
 ### Install
-	curl https://raw.github.com/Dracyr/dot-bash/master/setup.sh | bash
+	 wget -0 - https://raw.github.com/Dracyr/dot-bash/master/setup.sh | bash
 
 #### Notes
 
