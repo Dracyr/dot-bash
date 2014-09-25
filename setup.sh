@@ -15,10 +15,11 @@ __dot-bash-inject-to-profile() {
     cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.zshrc
     source ~/.zshrc
   else
-    echo "[ERROR] No .zshrc found."
-    echo "However the script has been loaded and will be available in the current shell session."
-    echo ""
-    echo -e "To install add the below line to your bash profile."
+    echo "[ERROR] No .zshrc found, creating it."
+    touch ~/.zshrc
+    cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.zshrc
+    source ~/.zshrc
+    echo -e "To install to another profile, add the below line to your bash profile."
     echo -e "\t cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.your_profile"
   fi
   __dot-bash-symlink '.inputrc'
@@ -28,9 +29,28 @@ __dot-bash-inject-to-profile() {
   __dot-bash-symlink '.gitconfig_global'
 }
 
+check_for_app() {
+  if command -v $1 2>/dev/null; then
+      echo "$1 is installed, continuing"
+  else
+      echo "$1 is not installed :("
+      sudo apt-get install --yes $1 > /dev/null
+      echo "But now it is!"
+  fi
+}
+
+echo "Setup script started, creating folders"
 mkdir ~/.pvsh
 CURRENT_FOLDER=$(pwd) && \
 cd ~/.pvsh && \
+check_for_app "git"
+echo "Cloning repository"
 git clone https://github.com/Dracyr/dot-bash.git && \
+check_for_app "zsh"
+if [ $SHELL != "/bin/zsh" ]; then
+    zsh
+    chsh -s /bin/zsh dracyr
+fi
 __dot-bash-inject-to-profile && \
 cd $CURRENT_FOLDER
+
