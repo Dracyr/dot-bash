@@ -45,14 +45,9 @@ CURRENT_FOLDER=$(pwd) && \
 cd ~/.pvsh && \
 check_for_app "git"
 echo "Cloning repository"
-git clone git://github.com/Dracyr/dot-bash.git && \
+git clone git@github.com:Dracyr/dot-bash.git && \
 
 check_for_app "zsh"
-if [ $SHELL != *"zsh"* ]; then
-    zsh
-    current_user=$(whoami)
-    chsh -s /bin/zsh current_user
-fi
 
 inject-to-profile && \
 cd $CURRENT_FOLDER
