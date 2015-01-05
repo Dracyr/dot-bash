@@ -1,33 +1,28 @@
 _install() {
   echo "Installing dot-bash Linux dependencies"  
-  __install-oh-my-zsh
-  __dot-bash-install-solarized-terminal-colors
-  __dot-bash-install-translate-cli
-  __install-terminal-fonts
-  #__install-rvm
+  install-oh-my-zsh
+  install-solarized-terminal-colors
+  install-translate-cli
+  install-terminal-fonts
+  install-rbenv
 }
 
-__install-oh-my-zsh() {
+install-oh-my-zsh() {
   echo "Installing Oh My Zsh"
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   echo "Oh My Zsh Installed"
 }
 
-__install-rvm() {
-  \curl -sSL https://get.rvm.io | bash -s stable --
-}
-
 # Terminal colors
-__dot-bash-install-solarized-terminal-colors() {
+install-solarized-terminal-colors() {
   echo "Installing terminal colors"
   mkdir ~/.pvsh/terminal-themes
   current_folder=$(pwd)
   cd ~/.pvsh/terminal-themes && git clone --depth=1 https://github.com/sigurdga/gnome-terminal-colors-solarized.git
   echo "Terminal colors installed"
-  cd $current_folder
 }
 
-__dot-bash-install-translate-cli() {
+install-translate-cli() {
   [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin/
   cd ~/.pvsh/bin/ && \
   echo "Downloading google-translate-cli" && \
@@ -37,7 +32,8 @@ __dot-bash-install-translate-cli() {
   make install
 }
 
-__install-terminal-fonts() {
+install-terminal-fonts() {
+  echo "Installing terminal fonts"
   wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
   wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
   mkdir -p ~/.fonts/
@@ -47,9 +43,13 @@ __install-terminal-fonts() {
   mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 }
 
-echo "Installing"
-$current_folder=$(pwd)
+install-rbenv() {
+  echo "Installing rbenv"
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+}
+
+current_folder=$(pwd)
 mkdir ~/.pvsh/dot-bash-temp
 cd ~/.pvsh/dot-bash-temp && _install
 cd $current_folder
-

@@ -6,6 +6,8 @@ require 'irb/ext/save-history'
 IRB.conf[:SAVE_HISTORY] = 500
 IRB.conf[:HISTORY_FILE] = File.expand_path('~/.irb_history')
 
+require "awesome_print"
+AwesomePrint.irb!
 require 'pp'
 
 # http://ozmm.org/posts/time_in_irb.html

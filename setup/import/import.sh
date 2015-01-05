@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ~/.pvsh/dot-bash/profiles/aliases-profile.sh
+source ~/.pvsh/dot-bash/profiles/ruby-profile.sh
 source ~/.pvsh/dot-bash/profiles/oh-my-zsh-profile.sh
 source ~/.pvsh/dot-bash/profiles/files-profile.sh
 source ~/.pvsh/dot-bash/profiles/git-profile.sh

@@ -100,7 +100,6 @@ function archive() {
   echo "${tmpFile}.gz created successfully."
 }
 
-
 ## __NAVIGATION__ ##
 
 # Go back N-dots-directories
@@ -133,17 +132,3 @@ marks() {
   ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 alias j="jump"
-
-
-# Highlights and prints the lines numbers of all non US ASCII characters
-# Usage:
-#       $ print_non_usascii path/to/file
-print_non_usascii() {
-  if [ "$(uname)" == "Darwin" ]; then
-    pcregrep --color='auto' -n "[\x80-\xFF]"
-  else
-    echo "Only checked on OSX"
-    echo "Can be installed with 'sudo apt-get install pcregrep'"
-  fi
-}
-

@@ -2,7 +2,6 @@
 
 ## Oh My Zsh config ##
 ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="agnoster"
 
 #Don't try to start sublime when in ssh
@@ -26,6 +25,6 @@ setopt HIST_IGNORE_DUPS
 # correction
 setopt correctall
 
-plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem rvm bundler)
+plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler)
 
 source $ZSH/oh-my-zsh.sh

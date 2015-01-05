@@ -14,7 +14,7 @@ export HISTSIZE=32768
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help:cd..:cd ..:gs:gp:gac:subl"
 
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="$ORANGE"
@@ -34,7 +34,7 @@ translate() {
     echo "google-translate-cli not found.."
     echo "Init install script"
     sleep 1
-    __dot-bash-install-translate-cli
+    install-translate-cli
   fi
   if [[ "$1" == "--help" ]] || [[ "$1" == "-help" ]];then
     echo -e "usage:
@@ -49,7 +49,7 @@ translate() {
     return
   fi
 
-  trs "$@"
+  tr "$@"
 }
 alias translate_to_swedish='translate {=sv}'
 alias translate_from_swedish='translate {sv=en}'
@@ -57,17 +57,6 @@ alias translate_from_swedish='translate {sv=en}'
 google_say() { local IFS=+;/usr/bin/mplayer -ao alsa -really-quiet -noconsolecontrols "http://translate.google.com/translate_tts?tl=en&q=$*"; }
 
 ## __MISC__ ##
-
-alias resize_to_width='convert -resize' # Resize args to width, keep aspect ratio
-
-cleanup_whiteboard() {
-  if [[ $1 == "--help" ]] || [[ $1 == "-help" ]] || [[ $1 == "-h" ]]; then
-    echo "Clean up whiteboard picture"
-    echo "Usage: cleanup_whiteboard <input-image> <output-image>"
-    return
-  fi
-  convert $1 -morphology Convolve DoG:15,100,0 -negate -normalize -blur 0x1 -channel RBG -level 60%,91%,0.1 $2
-}
 
 # Mac OSX like 'open' command
 # Opens the given input with the default program associated for that type
