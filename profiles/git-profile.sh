@@ -11,7 +11,10 @@ alias gfind='git rev-list --all | xargs git grep -F'  # Find in history string s
 
 alias gs='git status'
 alias grhh='git reset --hard HEAD'
-gac() { git commit -a -m "$1" }
+gac() { 
+  git add --all
+  git commit -m "$1" 
+}
 
 gpush() {
   if [ -z "$1" ]; then
