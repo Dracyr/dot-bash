@@ -1,6 +1,6 @@
 #!/bin/bash
 
-__dot-bash-symlink() {
+symlink() {
   file=$1
   if [[ -f ~/$file ]]; then
     echo "$file already existing skipping symlink for $file"
@@ -9,7 +9,7 @@ __dot-bash-symlink() {
   fi
 }
 
-__dot-bash-inject-to-profile() {
+inject-to-profile() {
   if [[ -f ~/.zshrc ]]; then
     echo "Injecting import: zshrc"
     cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.zshrc
@@ -22,11 +22,11 @@ __dot-bash-inject-to-profile() {
     echo -e "To install to another profile, add the below line to your bash profile."
     echo -e "\t cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.your_profile"
   fi
-  __dot-bash-symlink '.inputrc'
-  __dot-bash-symlink '.curlrc'
-  __dot-bash-symlink '.gemrc'
-  __dot-bash-symlink '.gitconfig'
-  __dot-bash-symlink '.gitconfig_global'
+  symlink '.inputrc'
+  symlink '.curlrc'
+  symlink '.gemrc'
+  symlink '.gitconfig'
+  symlink '.gitconfig_global'
 }
 
 check_for_app() {
@@ -45,12 +45,15 @@ CURRENT_FOLDER=$(pwd) && \
 cd ~/.pvsh && \
 check_for_app "git"
 echo "Cloning repository"
-git clone https://github.com/Dracyr/dot-bash.git && \
+git clone git://github.com/Dracyr/dot-bash.git && \
+
 check_for_app "zsh"
-if [ $SHELL != "/bin/zsh" ]; then
+if [ $SHELL != *"zsh"* ]; then
     zsh
-    chsh -s /bin/zsh dracyr
+    current_user=$(whoami)
+    chsh -s /bin/zsh current_user
 fi
-__dot-bash-inject-to-profile && \
+
+inject-to-profile && \
 cd $CURRENT_FOLDER
 
