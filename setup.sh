@@ -45,7 +45,7 @@ CURRENT_FOLDER=$(pwd) && \
 cd ~/.pvsh && \
 check_for_app "git"
 echo "Cloning repository"
-git clone git@github.com:Dracyr/dot-bash.git && \
+git clone https://github.com/Dracyr/dot-bash.git && \
 
 check_for_app "zsh"
 
