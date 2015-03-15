@@ -27,7 +27,7 @@ email = dracyr@gmail.com
 	ui = auto
 
 [core]
-  editor = subl
+  editor = subl -n -w
   excludesfile = /Users/pvsh/.gitignore_global
 
 [format]
@@ -45,3 +45,5 @@ email = dracyr@gmail.com
 
 [mergetool]
 	keepBackup = true
+[heroku]
+	account = dracyr

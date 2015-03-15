@@ -5,11 +5,16 @@ _install() {
   install-translate-cli
   install-terminal-fonts
   install-rbenv
+  #install-nodejs
+  #install-postgres
+  #install-redis
+  #install-mongodb
 }
 
 install-oh-my-zsh() {
   echo "Installing Oh My Zsh"
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+  git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins
   echo "Oh My Zsh Installed"
 }
 
@@ -47,6 +52,24 @@ install-rbenv() {
   echo "Installing rbenv"
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+}
+
+install-nodejs() {
+  sudo add-apt-repository ppa:chris-lea/node.js
+  sudo apt-get update
+  sudo apt-get install nodejs
+}
+
+install-redis() {
+  #TODO
+}
+
+install-mongodb() {
+  #TODO
+}
+
+install-postgres() {
+  #TODO
 }
 
 current_folder=$(pwd)

@@ -14,7 +14,7 @@ alias gs='git status'
 alias grhh='git reset --hard HEAD'
 alias gcd='git checkout'
 gac() { 
-  git add --all
+  git add --all :/
   git commit -m "$1" 
 }
 
