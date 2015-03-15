@@ -25,6 +25,6 @@ setopt HIST_IGNORE_DUPS
 # correction
 setopt correctall
 
-plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler)
+plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh

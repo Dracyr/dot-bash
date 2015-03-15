@@ -9,8 +9,10 @@ git config --global merge.stat true     # Always show merge stats
 alias gfindreg='git rev-list --all | xargs git grep'  # Find in history regex
 alias gfind='git rev-list --all | xargs git grep -F'  # Find in history string search
 
+#alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset'
 alias gs='git status'
 alias grhh='git reset --hard HEAD'
+alias gcd='git checkout'
 gac() { 
   git add --all
   git commit -m "$1" 
