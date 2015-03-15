@@ -4,14 +4,6 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="agnoster"
 
-#Don't try to start sublime when in ssh
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  alias zshconfig="vim ~/.zshrc"
-else
-  alias zshconfig="subl ~/.zshrc"
-  DEFAULT_USER=$(whoami)
-fi
-
 # completion
 autoload -U compinit
 compinit
@@ -25,6 +17,14 @@ setopt HIST_IGNORE_DUPS
 # correction
 setopt correctall
 
-plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler zsh-syntax-highlighting)
+#Don't try to start sublime when in ssh
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  alias zshconfig="vim ~/.zshrc"
+  plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler)
+else
+  alias zshconfig="subl ~/.zshrc"
+  DEFAULT_USER=$(whoami)
+  plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler zsh-syntax-highlighting)
+fi
 
 source $ZSH/oh-my-zsh.sh
