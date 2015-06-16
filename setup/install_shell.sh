@@ -5,10 +5,8 @@ _install() {
   install-translate-cli
   install-terminal-fonts
   install-rbenv
-  #install-nodejs
-  #install-postgres
-  #install-redis
-  #install-mongodb
+  install-nvm
+  install-random
 }
 
 install-oh-my-zsh() {
@@ -16,9 +14,6 @@ install-oh-my-zsh() {
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins
   echo "Oh My Zsh Installed"
-
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install
 }
 
 # Terminal colors
@@ -59,22 +54,17 @@ install-rbenv() {
   sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 }
 
-install-nodejs() {
-  sudo add-apt-repository ppa:chris-lea/node.js
-  sudo apt-get update
-  sudo apt-get install nodejs
+install-nvm() {
+  echo "Installing nvm"
+  git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
 }
 
-install-redis() {
-  #TODO
-}
-
-install-mongodb() {
-  #TODO
-}
-
-install-postgres() {
-  #TODO
+install-random() {
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+  
+  git clone --depth 1 https://github.com/supercrabtree/k.git ~/.k
+  echo "\nsource ~/.k/k.sh\n" >> ~/.zshrc
 }
 
 current_folder=$(pwd)

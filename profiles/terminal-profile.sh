@@ -1,8 +1,5 @@
 #!/bin/bash
 
-alias list_functions='compgen -A function'
-alias list_aliases='compgen -a'
-
 # Stopwatch
 alias stopwatch='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 

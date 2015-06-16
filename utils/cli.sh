@@ -11,12 +11,20 @@ pvsh() {
 __pvsh_functions() {
   if   [[ "$1" == "self-destruct" ]]; then
     __b_self_destruct
+  elif [[ "$1" == "install" ]]; then
+    if [[ "$2" == "postgresql" ]]; then
+      __i_install_postgresql
+    elif [[ "$2" == "mongodb" ]]; then
+      __i_install_mongodb
+    elif [[ "$2" == "redis" ]]; then
+      __i_install_redis
+    else
+      __pvsh-help
+    fi
   elif [[ "$1" == "update" ]]; then
     __b_update "$2"
   elif [[ "$1" == "setup" ]]; then
     __b_setup "$2"
-  elif [[ "$1" == "stat" ]]; then
-    __b_stat "$2" "$3"
   elif [[ "$1" == "list" ]];then
     if [[ "$2" == "alias" ]] || [[ "$2" == "aliases" ]]; then
       __b_list_aliases
@@ -99,6 +107,22 @@ __b_setup() {
   sh ~/.pvsh/setup/install.sh
 }
 
+########################
+#     Installations    #
+########################
+
+__i_install_postgresql() {
+  echo "not done"
+}
+
+__i_install_mongodb() {
+  echo "not done"
+}
+
+__i_install_redis() {
+  echo "not done"
+}
+
 ###############
 #             HELP            #
 ###############
@@ -107,6 +131,13 @@ __pvsh-help() {
   echo "usage: "
   echo -e "\t pvsh update <pkg>"
   echo -e "\t pvsh self-destruct"
+  echo -e "\t pvsh list"
+  echo -e "\t pvsh list alias"
+  echo -e "\t pvsh list functions"
+  echo -e "\t pvsh install"
+  echo -e "\t\t postgresqlql"
+  echo -e "\t\t redis"
+  echo -e "\t\t mongodb"
   echo "help:"
   echo -e "\t pvsh <command> -help"
 }

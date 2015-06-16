@@ -49,6 +49,6 @@ git clone https://github.com/Dracyr/dot-bash.git && \
 
 check_for_app "zsh"
 
-inject-to-profile && \
-cd $CURRENT_FOLDER
-
+inject-to-profile
+./setup/install_shell.sh
+exec zsh

@@ -22,3 +22,6 @@ alias rdr='rake db:rollback'
 # Rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# Also node 
+. ~/.nvm/nvm.sh
