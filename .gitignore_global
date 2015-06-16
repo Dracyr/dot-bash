@@ -2,10 +2,6 @@
 .hg
 .svn
 
-# Node.js package manager
-/node_modules
-/npm-debug.log
-
 # Other stuff
 *.pyc
 /tmp
@@ -56,3 +52,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Node.js #
+###########
+/node_modules
+/bower_components
+/npm-debug.log

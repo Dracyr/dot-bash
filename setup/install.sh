@@ -16,6 +16,9 @@ install-oh-my-zsh() {
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins
   echo "Oh My Zsh Installed"
+
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 }
 
 # Terminal colors

@@ -12,21 +12,12 @@ alias rc='rails console'
 alias rd='rails destroy'
 alias rdb='rails dbconsole'
 alias rg='rails generate'
-alias rgm='rails generate migration'
-alias rp='rails plugin'
-alias ru='rails runner'
 alias rs='rails server'
 alias rsd='rails server --debugger'
 
 #Rake aliases
 alias rdm='rake db:migrate'
 alias rdr='rake db:rollback'
-alias rdc='rake db:create'
-alias rds='rake db:seed'
-alias rdd='rake db:drop'
-alias rdtc='rake db:test:clone'
-alias rdtp='rake db:test:prepare'
-alias rdmtc='rake db:migrate db:test:clone'
 
 # Rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"

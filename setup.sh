@@ -23,10 +23,10 @@ inject-to-profile() {
     echo -e "\t cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.your_profile"
   fi
   symlink '.inputrc'
-  symlink '.curlrc'
+  symlink '.irbrc'
   symlink '.gemrc'
   symlink '.gitconfig'
-  symlink '.gitconfig_global'
+  symlink '.gitignore_global'
 }
 
 check_for_app() {

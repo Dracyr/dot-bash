@@ -54,26 +54,10 @@ translate() {
 alias translate_to_swedish='translate {=sv}'
 alias translate_from_swedish='translate {sv=en}'
 
-google_say() { local IFS=+;/usr/bin/mplayer -ao alsa -really-quiet -noconsolecontrols "http://translate.google.com/translate_tts?tl=en&q=$*"; }
-
 ## __MISC__ ##
 
 # Mac OSX like 'open' command
 # Opens the given input with the default program associated for that type
 open() {
   xdg-open $1
-}
-
-# Add the below lines to sudoers file (at the bottom):
-#       $ sudo visudo           # only way to edit sudoers file
-#      <username> ALL=(ALL) ALL
-#      <username> ALL = NOPASSWD: /usr/sbin/pm-suspend
-# Suspend computer after N-min (Linux specific)
-sleepin() {
-  if [[ -z "$1" ]]; then
-    pmset sleepnow
-  else
-    echo "Sleeping in $(bc <<< $1*60) minutes"
-    sleep $(bc <<< $1*60) && sudo pm-suspend
-  fi
 }
