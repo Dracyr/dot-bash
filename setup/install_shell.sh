@@ -6,6 +6,7 @@ _install() {
   install-terminal-fonts
   install-rbenv
   install-nvm
+  install-sublime
   install-random
 }
 
@@ -57,6 +58,33 @@ install-rbenv() {
 install-nvm() {
   echo "Installing nvm"
   git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
+}
+
+symlink() {
+  file=$1
+  if [[ -f ~/$file ]]; then
+    echo "$file already existing skipping symlink for $file"
+  else
+    ln -s ~/.pvsh/dot-bash/$file $HOME/$file && echo "Symlinked $file" || echo "Failed to symlink $file"
+  fi
+}
+
+install-sublime() {
+  sudo apt-get -y install sublime_text
+  mkdir -p $HOME/.config/sublime-text-3/Packages/User/
+  temp_folder=$(pwd)
+  cd ~/.pvsh/dot-bash/sublime_text
+  for file in *
+  do
+    install_path=$HOME"/.config/sublime-text-3/Packages/User"
+    if [[ -f $install_path/$file ]]; then
+      echo "$file already existing skipping symlink for $file"
+    else
+      ln -s $HOME/.pvsh/dot-bash/sublime_text/$file $install_path/$file && echo "Symlinked $file" || echo "Fail $file"
+    fi
+  done
+
+  cd $temp_folder
 }
 
 install-random() {
