@@ -3,9 +3,9 @@
 	"font_size": 11,
 	"ignored_packages":
 	[
+		"Vintage",
 		"Git",
-		"Sublimerge Pro",
-		"Vintage"
+		"Sublimerge Pro"
 	],
 	"theme": "Spacegray.sublime-theme"
 }
