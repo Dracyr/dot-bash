@@ -24,7 +24,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 else
   alias zshconfig="subl ~/.zshrc"
   DEFAULT_USER=$(whoami)
-  plugins=(gitfast debian wd history extract autojump colored-man colorize ruby gem bundler zsh-syntax-highlighting)
+  plugins=(gitfast wd history extract autojump colored-man colorize ruby gem bundler zsh-syntax-highlighting mix)
 fi
 
 source $ZSH/oh-my-zsh.sh

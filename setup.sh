@@ -39,13 +39,11 @@ check_for_app() {
   fi
 }
 
-echo "Setup script started, creating folders"
-mkdir ~/.pvsh
-CURRENT_FOLDER=$(pwd) && \
-cd ~/.pvsh && \
+echo "Setup script started, creating folders and cloning repo"
 check_for_app "git"
-echo "Cloning repository"
-git clone https://github.com/Dracyr/dot-bash.git && \
+CURRENT_FOLDER=$(pwd) && \
+git clone https://github.com/Dracyr/dot-bash.git ~/.pvsh && \
+cd ~/.pvsh
 
 check_for_app "zsh"
 

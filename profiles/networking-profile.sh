@@ -1,15 +1,16 @@
 #!/bin/bash
 
-## __LTH__ ##
-alias lthssh="ssh dat12pp1@login.student.lth.se"
-alias lthmount="gvfs-mount sftp://dat12pp1@login.student.lth.se"
-
 ## __NETWORKING__ ##
 
 # Quick look online hosts
 alias whoisup='fping -c1 -gds 192.168.1.0/24 2>&1| egrep -v "ICMP|xmt"'
+
 # Get local IP
 alias localip="hostname -I"
+# Get external IP
+alias myip='curl ip.appspot.com'
+alias externalip='myip'
+
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
 
@@ -17,24 +18,8 @@ alias whois="whois -h whois-servers.net"
 alias netlisteners='netstat -untap'
 alias checkconnection="ping www.google.com"
 
-# Get external IP
-alias myip='curl ip.appspot.com'
-alias externalip='myip'
-
 # Logs all GET and POST requests on port 80
 alias sniff="sudo ngrep -d 'wlan0' -t '^(GET|POST) ' 'tcp and port 80'"
-
-headers() {
-  curl -sv "$@" 2>&1 >/dev/null |
-    grep -v "^\*" |
-    grep -v "^}" |
-    cut -c3-
-}
-
-# One of @janmoesen’s ProTips
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-  alias "$method"="lwp-request -m '$method'"
-done
 
 # Create a data URL from a file
 dataurl() {

@@ -7,8 +7,6 @@ alias upgrade='sudo apt-get upgrade'
 alias remove="sudo apt-get remove"
 alias search="apt-cache search"
 
-export EDITOR=subl
-
 # Larger bash history (allow 32^3 entries; default is 500)
 export HISTSIZE=32768
 export HISTFILESIZE=${HISTSIZE}
