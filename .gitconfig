@@ -46,3 +46,5 @@ email = dracyr@gmail.com
   
 [heroku]
 	account = dracyr
+[credential]
+	helper = cache
