@@ -5,19 +5,19 @@ symlink() {
   if [[ -f ~/$file ]]; then
     echo "$file already existing skipping symlink for $file"
   else
-    ln -s ~/.pvsh/dot-bash/$file $HOME/$file && echo "Symlinked $file" || echo "Failed to symlink $file"
+    ln -s ~/.pvsh/$file $HOME/$file && echo "Symlinked $file" || echo "Failed to symlink $file"
   fi
 }
 
 inject-to-profile() {
   if [[ -f ~/.zshrc ]]; then
     echo "Injecting import: zshrc"
-    cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.zshrc
+    cat ~/.pvsh/setup/import/import_to_bash_profile >> ~/.zshrc
     source ~/.zshrc
   else
     echo "[ERROR] No .zshrc found, creating it."
     touch ~/.zshrc
-    cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.zshrc
+    cat ~/.pvsh/setup/import/import_to_bash_profile >> ~/.zshrc
     source ~/.zshrc
     echo -e "To install to another profile, add the below line to your bash profile."
     echo -e "\t cat ~/.pvsh/dot-bash/setup/import/import_to_bash_profile >> ~/.your_profile"

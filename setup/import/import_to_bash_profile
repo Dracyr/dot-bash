@@ -1,4 +1,0 @@
-
-if [ -f ~/.pvsh/dot-bash/setup/import/import.sh ]; then
-  source ~/.pvsh/dot-bash/setup/import/import.sh
-fi

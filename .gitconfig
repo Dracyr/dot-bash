@@ -25,8 +25,9 @@ email = dracyr@gmail.com
 	ui = auto
 
 [core]
-  editor = subl -n -w
+  editor = nano
   excludesfile = /Users/pvsh/.gitignore_global
+	pager = diff-highlight | diff-so-fancy | less --tabs=1,5 -RS
 
 [format]
   pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
@@ -48,3 +49,8 @@ email = dracyr@gmail.com
 	account = dracyr
 [credential]
 	helper = cache
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22

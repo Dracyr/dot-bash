@@ -1,11 +1,11 @@
 _install() {
-  echo "Installing dot-bash Linux dependencies"  
+  echo "Installing dot-bash Linux dependencies"
   install-oh-my-zsh
   install-solarized-terminal-colors
   install-translate-cli
   install-terminal-fonts
   install-rbenv
-  install-nvm
+  # install-nvm # use nave instead?
   install-sublime
   install-random
 }
@@ -13,7 +13,8 @@ _install() {
 install-oh-my-zsh() {
   echo "Installing Oh My Zsh"
   git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-  git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins
+  git clone git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.pvsh/zsh-custom/plugins
+  git clone git@github.com:tarruda/zsh-autosuggestions.git ~/.pvsh/zsh-custom/plugins
   echo "Oh My Zsh Installed"
 }
 
@@ -24,16 +25,6 @@ install-solarized-terminal-colors() {
   current_folder=$(pwd)
   cd ~/.pvsh/terminal-themes && git clone --depth=1 https://github.com/sigurdga/gnome-terminal-colors-solarized.git
   echo "Terminal colors installed"
-}
-
-install-translate-cli() {
-  [[ ! -d ~/.pvsh/bin ]] && mkdir -p ~/.pvsh/bin/
-  cd ~/.pvsh/bin/ && \
-  echo "Downloading google-translate-cli" && \
-  git clone git://github.com/soimort/google-translate-cli.git && \
-  cd  ~/.pvsh/bin/google-translate-cli/ && \
-  echo "Installing google-translate-cli" && \
-  make install
 }
 
 install-terminal-fonts() {
@@ -90,7 +81,7 @@ install-sublime() {
 install-random() {
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
-  
+
   git clone --depth 1 https://github.com/supercrabtree/k.git ~/.k
   echo "\nsource ~/.k/k.sh\n" >> ~/.zshrc
 }
