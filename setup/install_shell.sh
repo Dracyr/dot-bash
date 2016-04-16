@@ -5,7 +5,6 @@ _install() {
   install-translate-cli
   install-terminal-fonts
   install-rbenv
-  # install-nvm # use nave instead?
   install-sublime
   install-random
 }
@@ -29,8 +28,8 @@ install-solarized-terminal-colors() {
 
 install-terminal-fonts() {
   echo "Installing terminal fonts"
-  wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
-  wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+  wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+  wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
   mkdir -p ~/.fonts/
   mv PowerlineSymbols.otf ~/.fonts/
   fc-cache -vf ~/.fonts/
@@ -46,11 +45,6 @@ install-rbenv() {
   sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 }
 
-install-nvm() {
-  echo "Installing nvm"
-  git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
-}
-
 symlink() {
   file=$1
   if [[ -f ~/$file ]]; then
@@ -60,8 +54,8 @@ symlink() {
   fi
 }
 
-install-sublime() {
-  sudo apt-get -y install sublime_text
+install-sublime-settings() {
+  # sudo apt-get -y install sublime_text
   mkdir -p $HOME/.config/sublime-text-3/Packages/User/
   temp_folder=$(pwd)
   cd ~/.pvsh/dot-bash/sublime_text

@@ -1,8 +1,10 @@
 [
-	{ "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
-	{ "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
-	{ "keys": ["alt+d"], "command": "goto_definition" },
-	{ "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },
-	{ "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": true } },
-	{ "keys": ["ctrl+shift+s"], "command": "save_all" }
+  { "keys": ["ctrl+alt+up"], "command": "select_lines", "args": {"forward": false} },
+  { "keys": ["ctrl+alt+down"], "command": "select_lines", "args": {"forward": true} },
+  { "keys": ["alt+d"], "command": "goto_definition"},
+  { "keys": ["ctrl+7"], "command": "toggle_comment", "args": {"block": false}},
+  { "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": {"block": true}},
+  { "keys": ["ctrl+shift+s"], "command": "save_all" },
+  { "keys": ["ctrl+shift+o"], "command": "run_macro_file", "args": {"file": "res://Packages/User/dupe_comment_line.sublime-macro"} },
+  { "keys": ["f12"], "command": "reindent", "args": {"single_line": true} }
 ]

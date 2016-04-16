@@ -112,15 +112,11 @@ __b_setup() {
 ########################
 
 __i_install_postgresql() {
-  echo "not done"
-}
-
-__i_install_mongodb() {
-  echo "not done"
-}
-
-__i_install_redis() {
-  echo "not done"
+  sudo pacman -S postgresql
+  sudo -u postgres initdb --locale $en_US.UTF-8 -E UTF8 -D '/var/lib/postgres/data'
+  sudo systemctl start postgresql.service
+  sudo systemctl enable postgresql.service
+  createdb $(whoami)
 }
 
 ###############

@@ -1,11 +1,12 @@
 {
-	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
-	"font_size": 11,
-	"ignored_packages":
-	[
-		"Vintage",
-		"Git",
-		"Sublimerge Pro"
-	],
-	"theme": "Spacegray.sublime-theme"
+  "color_scheme": "Packages/User/SublimeLinter/Monokai Extended (SL).tmTheme",
+  "font_face": "Roboto Mono",
+  "font_size": 12,
+  "ignored_packages":
+  [
+    "Vintage"
+  ],
+  "status_bar_brighter": true,
+  "tabs_small": true,
+  "theme": "Afterglow-blue.sublime-theme"
 }
